@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Birr4You</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-logo">
+      <a class="header-logo-a" href="./index.html"><img class="header-logo-img" src="./img/b4y.jpg"
+          alt="Logo de Birra4You" /></a>
+      <a class="header-logo-a" href="./index.html">
+        <h1 class="header-logo-h1">BIRR4YOU</h1>
+      </a>
+      <a class="header-logo-a" href="./index.html"><img class="header-logo-img-right" src="./img/b4y.jpg"
+          alt="Logo de Birra4You" /></a>
+    </div>
+    <div class="header-nav-container">
+      <nav class="header-nav">
+        <div class="header-nav-container">
+          <div class="header-nav-search">
+            <input type="text" placeholder="Busqueda" />
+            <button><i class="fas fa-search"></i></button>
+          </div>
+          <div class="header-nav-cart-login">
+            <button onclick="toggleCart()">
+              <i id="cartIcon" class="fa-sharp fa-solid fa-cart-shopping"></i>
+            </button>
+            <div id="cart" style="display: none">
+              <h2>Carrito de compras</h2>
+              <ul id="cart-items"></ul>
+              <button onclick="continueShopping()">Seguir comprando</button>
+              <button onclick="checkout()">Finalizar compra</button>
+            </div>
+            <!-- <button onclick="openForm()" id="loginBtn">
+              <i class="far fa-user"></i>
+            </button> -->
+            <!-- <div id="loginModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Iniciar sesión</h2>
+                <form>
+                  <label for="username">Usuario:</label>
+                  <input type="text" id="username" name="username" required>
+                  <label for="password">Contraseña:</label>
+                  <input type="password" id="password" name="password" required>
+                  <button type="submit">Ingresar</button>
+                </form>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <ul class="header-nav-ul">
+          <li class="header-nav-ul-li">
+            <a class="header-nav-ul-li-a" href="#">INICIO</a>
+          </li>
+          <li class="header-nav-ul-li">
+            <a class="header-nav-ul-li-a" href="#">PRODUCTOS</a>
+          </li>
+          <select id="sel-category"></select>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="productos-section">
+      <h2 class="productos-h2">Nuestros productos</h2>
+      <article id="productos"></article>
+    </section>
+    <section class="recommended-products">
+      <h2 class="recommended-products-h2">Cervezas recomendadas</h2>
+      <table class="recommended-products-table">
+        <tr class="recommended-products-table-tr">
+          <td class="recommended-products-table-tr-td">
+            <div class="recommended-products-table-tr-td-product">
+              <h3 class="recommended-products-table-tr-td-product-h3">
+                Cerveza Corona
+              </h3>
+              <p class="recommended-products-table-tr-td-product-p">
+                Esta cerveza de origen andino se caracteriza por un sabor
+                suave con dejos de roble
+              </p>
+              <button class="recommended-products-table-tr-td-product-button">
+                Comprar
+              </button>
+            </div>
+          </td>
+          <td class="recommended-products-table-tr-td-img-container">
+            <img class="recommended-products-table-tr-td-img" src="./img/corona.png" alt="Cerveza Corona" />
+          </td>
+        </tr>
+        <tr class="recommended-products-table-tr">
+          <td class="recommended-products-table-tr-td">
+            <div class="recommended-products-table-tr-td-product">
+              <h3 class="recommended-products-table-tr-td-product-h3">
+                Six Pack Brahma
+              </h3>
+              <p class="recommended-products-table-tr-td-product-p">
+                Brahma Dorada, es fácil de tomar, suave y ligera, con baja
+                carbonatación. Con 3.5% de alcohol (ABV), color dorada que
+                brinda una refrescancia superior y con mayor tiempo de
+                maceración. Disponible en botella no retornable/descartable de
+                710ml.
+              </p>
+              <button class="recommended-products-table-tr-td-product-button">
+                Comprar
+              </button>
+            </div>
+          </td>
+          <td class="recommended-products-table-tr-td-img-container">
+            <img class="recommended-products-table-tr-td-img" src="./img/brahma.jpg" alt="Six Pack Brahma" />
+          </td>
+        </tr>
+      </table>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <a class="footer-content-a" href="">Contacto</a>
+      <a class="footer-content-a" href="">Sobre Nosotros</a>
+      <div class="footer-content-social-media">
+        <a class="footer-content-social-media-a" href="https://facebook.com"><i class="fab fa-facebook"></i></a>
+        <a class="footer-content-social-media-a" href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    <a href="./index.html"><img class="footer-content-img" src="./img/b4y.jpg" alt="Logo de Birra4You" /></a>
+    <p class="footer-content-p">
+      Integrantes: Peña Matias - Macchia Sebastian
+    </p>
+  </footer>
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Iniciar sesión</h2>
+      <form>
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Ingresar</button>
+      </form>
+    </div>
+  </div>
+  <div id="cart" style="display: none">
+    <h2>Carrito de compras</h2>
+    <ul id="cart-items"></ul>
+    <button onclick="continueShopping()">Seguir comprando</button>
+    <button onclick="checkout()">Finalizar compra</button>
+  </div>
+
+  <script>
+    var shoppingCart = [];
+
+    function getAllCervezas() {
+      fetch("https://b4you.free.mockoapp.net/beers")
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((cervezasArray) => {
+          let productos = document.getElementById("productos");
+          cervezasArray.forEach((cerveza) => {
+            var div = document.createElement("div");
+            div.id = "producto-div";
+
+            var title = document.createElement("h3");
+            title.innerHTML = cerveza.title;
+
+            var img = document.createElement("img");
+            img.src = cerveza.image;
+
+            var description = document.createElement("p");
+            description.innerHTML = cerveza.description;
+
+            var price = document.createElement("p");
+            price.id = 'price';
+            price.innerHTML = "$" + cerveza.price;
+
+            var button = document.createElement("button");
+            button.classList.add("addButton");
+            button.innerHTML = "Agregar";
+
+            div.appendChild(title);
+            div.appendChild(img);
+            div.appendChild(description);
+            div.appendChild(price);
+            div.appendChild(button);
+
+            productos.appendChild(div);
+          });
+
+          // Agregar evento de clic a los botones de agregar cerveza
+          var addButtons = document.getElementsByClassName("addButton");
+          for (var i = 0; i < addButtons.length; i++) {
+            addButtons[i].addEventListener("click", addToCart);
+          }
+        });
+    }
+
+    function getAllCervezasByCategory(categoryId) {
+      fetch("https://b4you.free.mockoapp.net/beers")
+        .then((resp) => resp.json())
+        .then((cervezasArray) => {
+          let productos = document.getElementById("productos");
+          productos.innerHTML = "";
+
+          const filteredCervezas = cervezasArray.filter(
+            (cerveza) => cerveza.category_id == categoryId
+          );
+
+          filteredCervezas.forEach((cerveza) => {
+            var div = document.createElement("div");
+            div.id = "producto-div";
+
+            var title = document.createElement("h3");
+            title.innerHTML = cerveza.title;
+
+            var img = document.createElement("img");
+            img.src = cerveza.image;
+
+            var description = document.createElement("p");
+            description.innerHTML = cerveza.description;
+
+            var price = document.createElement("p");
+            price.id = 'price';
+            price.innerHTML = "$" + cerveza.price;
+
+            var button = document.createElement("button");
+            button.classList.add("addButton");
+            button.innerHTML = "Agregar";
+
+            div.appendChild(title);
+            div.appendChild(img);
+            div.appendChild(description);
+            div.appendChild(price);
+            div.appendChild(button);
+
+            productos.appendChild(div);
+          });
+
+          // Agregar evento de clic a los botones de agregar cerveza
+          var addButtons = document.getElementsByClassName("addButton");
+          for (var i = 0; i < addButtons.length; i++) {
+            addButtons[i].addEventListener("click", addToCart);
+          }
+        });
+    }
+
+    function addToCart(event) {
+      // Obtener el contenedor del producto padre del botón clicado
+      var productoDiv = event.target.closest("#producto-div");
+
+      // Obtener los elementos dentro del contenedor
+      var title = productoDiv.querySelector("h3").innerHTML;
+      var imgSrc = productoDiv.querySelector("img").getAttribute("src");
+      var price = parseFloat(productoDiv.querySelector("#price").innerHTML.replace("$", ""));
+
+      // Verificar si el artículo ya está en el carrito
+      var existingItem = shoppingCart.find((item) => item.title === title);
+      if (existingItem) {
+        // Si el artículo ya está en el carrito, incrementar la cantidad
+        existingItem.quantity++;
+      } else {
+        // Si el artículo no está en el carrito, agregarlo con una cantidad de 1
+        shoppingCart.push({
+          title: title,
+          imgSrc: imgSrc,
+          price: price,
+          quantity: 1
+        });
+      }
+
+      // Mostrar los datos en el carrito
+      displayCart();
+    }
+
+    function displayCart() {
+      var cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+
+      // Recorrer los elementos del carrito y mostrarlos en el DOM
+      shoppingCart.forEach((item, index) => {
+        var li = document.createElement("li");
+        li.id = "cartLi";
+
+        var img = document.createElement("img");
+        img.src = item.imgSrc;
+
+        var title = document.createElement("p");
+        title.innerHTML = item.title;
+
+        var quantity = document.createElement("p");
+        quantity.id = "cant";
+        quantity.innerHTML = "Cantidad: ";
+
+        var decreaseButton = document.createElement("button");
+        decreaseButton.innerHTML = "-";
+        decreaseButton.addEventListener("click", function () {
+          decreaseQuantity(index);
+        });
+
+        var quantityValue = document.createElement("p");
+        quantityValue.innerHTML = item.quantity;
+        quantityValue.id = "cant";
+
+        var increaseButton = document.createElement("button");
+        increaseButton.innerHTML = "+";
+        increaseButton.addEventListener("click", function () {
+          increaseQuantity(index);
+        });
+
+        var price = document.createElement("p");
+        price.innerHTML = "Precio: $" + item.price.toFixed(2);
+
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        deleteButton.addEventListener("click", function () {
+          removeItem(index);
+        });
+
+        quantity.appendChild(decreaseButton);
+        quantity.appendChild(quantityValue);
+        quantity.appendChild(increaseButton);
+
+        li.appendChild(img);
+        li.appendChild(title);
+        li.appendChild(quantity);
+        li.appendChild(price);
+        li.appendChild(deleteButton);
+
+        cartItems.appendChild(li);
+      });
+
+      // Mostrar el carrito
+      var cart = document.getElementById("cart");
+      cart.style.display = "block";
+    }
+
+    function decreaseQuantity(index) {
+      if (shoppingCart[index].quantity > 1) {
+        shoppingCart[index].quantity--;
+      }
+      displayCart();
+    }
+
+    function increaseQuantity(index) {
+      shoppingCart[index].quantity++;
+      displayCart();
+    }
+
+    function removeItem(index) {
+      shoppingCart.splice(index, 1);
+      displayCart();
+    }
+
+
+    function toggleCart() {
+      var cart = document.getElementById("cart");
+      if (cart.style.display === "block") {
+        cart.style.display = "none";
+      } else {
+        cart.style.display = "block";
+      }
+    }
+
+
+    // Llamar a la función para obtener todas las cervezas al cargar la página
+    window.onload = function () {
+      fetch("https://b4you.free.mockoapp.net/categories")
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((categoryList) => {
+          let selector = document.getElementById("sel-category");
+          var categorias = document.createElement("option");
+          categorias.innerHTML = "CATEGORIAS";
+          selector.appendChild(categorias);
+
+          categoryList.forEach((category) => {
+            var opt = document.createElement("option");
+            opt.innerHTML = category.title;
+            opt.value = category.id;
+            selector.appendChild(opt);
+          });
+
+          selector.addEventListener("change", function () {
+            const selectedCategoryId = selector.value;
+            getAllCervezasByCategory(selectedCategoryId);
+          });
+        })
+        .then(getAllCervezas());
+    };
+
+
+  </script>
+</body>
+
+</html>
+
