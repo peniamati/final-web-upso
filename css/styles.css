@@ -84,6 +84,10 @@ body {
 }
 
 
+.header-nav-cart-login{
+  text-align: end;
+}
+
 #productos-section{
   display: flex;
   flex-wrap: wrap;
@@ -246,7 +250,7 @@ body {
 
 /* Contenedor login */
 
-.modal {
+#modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -280,26 +284,26 @@ body {
   cursor: pointer;
 } 
 
-h2 {
+.modal-content h2 {
   margin-bottom: 10px;
 }
 
-form {
+.login-form {
   display: flex;
   flex-direction: column;
 }
 
-label {
+.login-form label {
   margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="password"] {
+.login-form input[type="text"],
+.login-form input[type="password"] {
   padding: 5px;
   margin-bottom: 10px;
 }
 
-button[type="submit"] {
+.login-form button[type="submit"] {
   background-color: #007bff;
   color: white;
   border: none;
@@ -310,6 +314,13 @@ button[type="submit"] {
 #cart{
   border: 1px solid black;
   text-align: center;
+  height: auto;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+#cart>h2{
+  border-bottom: 1px solid black;
 }
 
 #cart-items{
@@ -319,13 +330,75 @@ button[type="submit"] {
 
 #cartLi{
   width: 100%;
+  border-bottom: 1px solid black;
+  margin-top: 0.5rem;
 }
 
-#cant{
-  display: inline;
-  width: 50%;
+#title{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#divCant>p{
+  display: inline-flex;
 }
 
 #cartLi>img{
-  width: 80%;
+  width: 100px;
 }
+
+@media (min-width: 1024px) {
+
+  #productos{
+    text-align: left;
+  }
+
+  #producto-div{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 30%;
+    height: 375px;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+
+  #producto-div h3{
+    width: 100%;
+  }
+
+  #producto-div img{
+    width: auto;
+    max-height: 190px;
+  }
+
+
+  tbody{
+    display: inline-flex;
+    justify-content: space-between;
+  }
+
+  .recommended-products-table-tr {
+    display: flex;
+    width: 30%;
+    flex-direction: column-reverse;
+  }
+  
+  .recommended-products-table-tr-td {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .recommended-products-table-tr-td-img-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .recommended-products-table-tr-td {
+    box-sizing: border-box;
+    padding: 10px;
+  }
+}
+  
