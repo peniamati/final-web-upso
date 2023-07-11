@@ -25,7 +25,7 @@
       <nav class="header-nav">
         <div class="header-nav-container">
           <div class="header-nav-search">
-            <input id="buscador" type="text" placeholder="Busqueda" />
+            <input id="buscador" type="text" placeholder="Busque su producto" />
             <button id="boton-buscar" onclick="searchPage()"><i class="fas fa-search"></i></button>
           </div>
           <div class="header-nav-cart-login">
@@ -543,6 +543,7 @@
       let submit = document.createElement("button");
       submit.type = "submit";
       submit.innerHTML = "Ingresar";
+      submit.onclick = ingresar;
 
 
       form.appendChild(username);
@@ -567,6 +568,25 @@
     function closeLogin() {
       let modal = document.getElementById("modal");
       modal.style.display = "none";
+    }
+
+    function ingresar(){
+      let username = document.getElementById("username");
+      let password = document.getElementById("password");
+
+      if (username.value === "admin") {
+        if (password.value === "admin"){
+          form.close();
+        }
+        else{
+          alert("Contraseña incorrecta")
+        }
+      }
+      else{
+        alert("Usuario incorrecto")
+      } 
+      
+
     }
 
   </script>

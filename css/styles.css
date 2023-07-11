@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Calibri', 'Arial', 'sans-serif';
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 .header {
@@ -267,18 +267,21 @@ body {
   padding: 20px;
   border: 1px solid #888;
   width: 300px;
+  height: 300px;
+  text-align: center;
 }
 
-.close {
-  color: #aaa;
+#cerrarLogin {
+  color: red;
   float: right;
-  font-size: 28px;
+  font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  text-align: end;
 }
 
-.close:hover,
-.close:focus {
+#cerrarLogin:hover,
+#cerrarLogin:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -286,24 +289,26 @@ body {
 
 .modal-content h2 {
   margin-bottom: 10px;
+  text-align: start;
 }
 
-.login-form {
+#login-form {
   display: flex;
   flex-direction: column;
+  height: 80px;
 }
 
-.login-form label {
-  margin-bottom: 5px;
+#login-form label {
+  margin-bottom: 1rem;
 }
 
-.login-form input[type="text"],
-.login-form input[type="password"] {
+#login-form input[type="text"],
+#login-form input[type="password"] {
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
-.login-form button[type="submit"] {
+#login-form button[type="submit"] {
   background-color: #007bff;
   color: white;
   border: none;
@@ -351,6 +356,7 @@ body {
 
   #productos{
     text-align: left;
+    margin-left: 5%;
   }
 
   #producto-div{
@@ -360,13 +366,15 @@ body {
     height: 375px;
     text-align: center;
     justify-content: center;
+    justify-self: center;
+    align-content: space-between;
     border: 1px solid black;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
+    margin-right: 1rem; 
   }
 
   #producto-div h3{
     width: 100%;
+    max-height: 24px;
   }
 
   #producto-div img{
@@ -374,10 +382,17 @@ body {
     max-height: 190px;
   }
 
+  #producto-div button{
+    max-height: 20px;
+  }
+
+
 
   tbody{
     display: inline-flex;
     justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   .recommended-products-table-tr {
@@ -391,14 +406,14 @@ body {
     box-sizing: border-box;
   }
 
+  .recommended-products-table-tr-td-product{
+    height:max-content;
+  }
+
   .recommended-products-table-tr-td-img-container {
     width: 100%;
-    box-sizing: border-box;
   }
   
-  .recommended-products-table-tr-td {
-    box-sizing: border-box;
-    padding: 10px;
-  }
+  
 }
   
