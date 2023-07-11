@@ -352,7 +352,54 @@ body {
   width: 100px;
 }
 
+/* Sección Contacto */
+.main-contact{
+  width: 90%;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main-contact h2{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+.main-form{
+  border: black solid 2px;
+
+  flex-direction: column;
+}
+.main-form h3{
+  text-align: center;
+  color:black;
+  font-weight: bold;
+}
+.main-contact-img{
+  width: 80%;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main-contact-img img{
+  width: 100%;
+}
+.main-form-bot{
+  display: flex;
+  justify-content: space-evenly;
+}
+.main-form-bot input{
+  background-color: black;
+  color: #f4f4f4;
+  border-radius: 20px;
+  width: 120px;
+}
 @media (min-width: 1024px) {
+  .header-logo-img-right{
+    display: block;
+    width: 100px;
+  }
+
 
   #productos{
     text-align: left;
@@ -414,6 +461,39 @@ body {
     width: 100%;
   }
   
-  
+  /* Sección Contacto */
+  .main-contact h2{
+    font-size: 2rem;
+  }
+  .main-contact h3{
+    font-size: 1.3rem;
+  }
+  .main-contact{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .main-form{
+    width: 100%;
+    border: none;
+    flex-direction: row;
+    display: inline-flex;
+  }
+  .main-formulario{
+    text-align: start;
+    align-self: center;
+    font-size: 1.2rem;
+  }
+  .main-form div{
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  .main-contact-img{
+    width: 40%;
+    padding: 1rem;
+  }
+  .main-contact-img img{
+    width: 100%;
+  }
 }
   

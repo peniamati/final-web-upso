@@ -1,92 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="shortcut icon" href="../img/b4y_icon.ico" type="image/x-icon">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="shortcut icon" href="../img/b4y_icon.ico" type="image/x-icon">
+  </head>
 
-<body>
-  <header class="header">
-    <div class="header-logo">
-      <a class="header-logo-a" href="../index.html"><img class="header-logo-img" src="../img/b4y.jpg"
-          alt="Logo de Birra4You" /></a>
-      <a class="header-logo-a" href="../index.html">
-        <h1 class="header-logo-h1">BIRR4YOU</h1>
-      </a>
-      <a class="header-logo-a" href="../index.html"><img class="header-logo-img-right" src="../img/b4y.jpg"
-          alt="Logo de Birra4You" /></a>
-    </div>
-    <div class="header-nav-container">
-      <nav class="header-nav">
-        <div class="header-nav-container">
-          <div class="header-nav-search">
-            <input id="buscador" type="text" placeholder="Busqueda" />
-            <button id="boton-buscar" onclick="searchPage()"><i class="fas fa-search"></i></button>
-          </div>
-          <div class="header-nav-cart-login">
-            <button onclick="toggleCart()">
-              <i id="cartIcon" class="fa-sharp fa-solid fa-cart-shopping"></i>
-            </button>
-            <div id="cart" style="display: none">
-              <h2>Carrito de compras</h2>
-              <ul id="cart-items"></ul>
+  <body>
+    <header class="header">
+      <div class="header-logo">
+        <a class="header-logo-a" href="../index.html"><img
+            class="header-logo-img" src="../img/b4y.jpg"
+            alt="Logo de Birra4You" /></a>
+        <a class="header-logo-a" href="../index.html">
+          <h1 class="header-logo-h1">BIRR4YOU</h1>
+        </a>
+        <a class="header-logo-a" href="../index.html"><img
+            class="header-logo-img-right" src="../img/b4y.jpg"
+            alt="Logo de Birra4You" /></a>
+      </div>
+      <div class="header-nav-container">
+        <nav class="header-nav">
+          <div class="header-nav-container">
+            <div class="header-nav-search">
+              <input id="buscador" type="text" placeholder="Busqueda" />
+              <button id="boton-buscar" onclick="searchPage()"><i
+                  class="fas fa-search"></i></button>
             </div>
-            <button onclick="toggleLogin()" id="loginBtn">
-              <i class="far fa-user"></i>
-            </button>
-            <div id="modal" style="display: none;">
+            <div class="header-nav-cart-login">
+              <button onclick="toggleCart()">
+                <i id="cartIcon" class="fa-sharp fa-solid fa-cart-shopping"></i>
+              </button>
+              <div id="cart" style="display: none">
+                <h2>Carrito de compras</h2>
+                <ul id="cart-items"></ul>
+              </div>
+              <button onclick="toggleLogin()" id="loginBtn">
+                <i class="far fa-user"></i>
+              </button>
+              <div id="modal" style="display: none;">
+
+              </div>
 
             </div>
-
           </div>
-        </div>
-        <ul class="header-nav-ul">
-          <li class="header-nav-ul-li">
-            <a class="header-nav-ul-li-a" href="../index.html">PRODUCTOS</a>
-          </li>
-          <select id="sel-category">
+          <ul class="header-nav-ul">
+            <li class="header-nav-ul-li">
+              <a class="header-nav-ul-li-a" href="../index.html">PRODUCTOS</a>
+            </li>
+            <select id="sel-category">
 
-          </select>
-          <li class="header-nav-ul-li">
-            <a class="header-nav-ul-li-a" href="../pages/contacto.html">CONTACTO</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <h2> Contacto</h2>
-    <section class="main-div-contacto">
-      <article class="main-form">
+            </select>
+            <li class="header-nav-ul-li">
+              <a class="header-nav-ul-li-a" href="../pages/contacto.html">CONTACTO</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="main-contact">
+      <h2> Contacto</h2>
+      <section class="main-form">
         <h3>Formulario de Contacto</h3>
         <form class="main-formulario">
           <div class="form-group">
             <label for="nombre">Ingrese su nombre y apellido:</label>
-            <input type="text" id="nombre" placeholder="Nombre y apellido" required>
+            <input type="text" id="nombre" placeholder="Nombre y apellido"
+              required>
           </div>
 
           <div class="form-group">
             <label for="email">Ingrese su Email:</label>
-            <input type="email" id="email" placeholder="email@ejemplo.com" required>
+            <input type="email" id="email" placeholder="email@ejemplo.com"
+              required>
           </div>
 
           <div class="form-group">
             <label for="asunto">Elija el asunto:</label>
             <select name="asunto" id="asunto">
               <option value="consulta">Consulta</option>
-              <option value="prox-fecha">Próxima fecha</option>
+              <option value="prox-fecha">Próximo Evento</option>
               <option value="otro">Otro</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="mensaje">Ingrese su mensaje:</label>
-            <textarea name="mensaje" id="mensaje" placeholder="Ingrese su mensaje" cols="25" rows="5"
+            <textarea name="mensaje" id="mensaje"
+              placeholder="Ingrese su mensaje" cols="25" rows="5"
               required></textarea>
           </div>
 
@@ -100,25 +106,29 @@
             <input type="reset" value="Resetear contenido">
           </div>
         </form>
-
-      </article>
-    </section>
-  </main>
-  <footer class="footer">
-    <div class="footer-content">
-      <a class="footer-content-a" href="">Contacto</a>
-      <a class="footer-content-a" href="">Sobre Nosotros</a>
-      <div class="footer-content-social-media">
-        <a class="footer-content-social-media-a" href="https://facebook.com"><i class="fab fa-facebook"></i></a>
-        <a class="footer-content-social-media-a" href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+        <div class="main-contact-img">
+          <img src="../img/beer-contact.jpg" alt="img-contact">
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-content">
+        <a class="footer-content-a" href>Contacto</a>
+        <a class="footer-content-a" href>Sobre Nosotros</a>
+        <div class="footer-content-social-media">
+          <a class="footer-content-social-media-a" href="https://facebook.com"><i
+              class="fab fa-facebook"></i></a>
+          <a class="footer-content-social-media-a" href="https://twitter.com"><i
+              class="fab fa-twitter"></i></a>
+        </div>
       </div>
-    </div>
-    <a href="../index.html"><img class="footer-content-img" src="../img/b4y.jpg" alt="Logo de Birra4You" /></a>
-    <p class="footer-content-p">
-      Integrantes: Peña Matias - Macchia Sebastian
-    </p>
-  </footer>
-  <script>
+      <a href="../index.html"><img class="footer-content-img"
+          src="../img/b4y.jpg" alt="Logo de Birra4You" /></a>
+      <p class="footer-content-p">
+        Integrantes: Peña Matias - Macchia Sebastian
+      </p>
+    </footer>
+    <script>
     window.onload = inicio;
 
     function inicio() {
@@ -164,6 +174,6 @@
       });
     }
   </script>
-</body>
+  </body>
 
 </html>
