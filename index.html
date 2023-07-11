@@ -380,7 +380,7 @@
         if (selectedOption !== "") {
           const searchParams = new URLSearchParams();
           searchParams.set("category", selectedOption);
-          const newURL = "../index.html?" + searchParams.toString();
+          const newURL = "./index.html?" + searchParams.toString();
           window.location.href = newURL;
         }
       });
