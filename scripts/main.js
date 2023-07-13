@@ -430,12 +430,21 @@ function inicio() {
   const selectedCategory = searchParams.get("category");
 
   selector.addEventListener("change", function () {
+    var urlPagina = window.location.href;
     const selectedOption = selector.value;
     if (selectedOption !== "") {
-      const searchParams = new URLSearchParams();
-      searchParams.set("category", selectedOption);
-      const newURL = "./index.html?" + searchParams.toString();
-      window.location.href = newURL;
+      if (urlPagina == "index.html"){
+        const searchParams = new URLSearchParams();
+        searchParams.set("category", selectedOption);
+        const newURL = "./index.html?" + searchParams.toString();
+        window.location.href = newURL;
+      }
+      else{
+        const searchParams = new URLSearchParams();
+        searchParams.set("category", selectedOption);
+        const newURL = "../index.html?" + searchParams.toString();
+        window.location.href = newURL;
+      }
     }
   });
 
@@ -703,6 +712,7 @@ function loginForm() {
   let submit = document.createElement("button");
   submit.type = "submit";
   submit.innerHTML = "Ingresar";
+  submit.required = correcta;
   submit.onclick = ingresar;
 
   form.appendChild(username);
@@ -729,19 +739,24 @@ function closeLogin() {
   modal.style.display = "none";
 }
 
+var correcta = false;
+
 function ingresar() {
   let username = document.getElementById("username");
   let password = document.getElementById("password");
 
-  if (username.value === "admin") {
-    if (password.value === "admin") {
-      closeLogin();
+    if (username.value === "admin") {
+      if (password.value === "admin") {
+        closeLogin();
+        correcta = true;
+      } else {
+        alert("Contraseña incorrecta");
+        return;
+      }
     } else {
-      alert("Contraseña incorrecta");
+      alert("Usuario incorrecto");
+      return;
     }
-  } else {
-    alert("Usuario incorrecto");
-  }
 }
 
 function getAllRecommended() {
