@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Birr4You</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="shortcut icon" href="../img/b4y_icon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../img/b4y_icon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -26,32 +26,36 @@
         <div class="header-nav-container">
           <div class="header-nav-search">
             <input id="buscador" type="text" placeholder="Busque su producto" />
-            <button id="boton-buscar" onclick="searchPage()"><i class="fas fa-search"></i></button>
+            <button id="boton-buscar" onclick="searchPage()">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
           <div class="header-nav-cart-login">
+            <button onclick="toggleLogin()" id="loginBtn">
+              <i class="far fa-user"></i>
+            </button>
             <button onclick="toggleCart()">
               <i id="cartIcon" class="fa-sharp fa-solid fa-cart-shopping"></i>
             </button>
             <div id="cart" style="display: none">
               <h2>Carrito de compras</h2>
               <ul id="cart-items"></ul>
+              <div class="cart-footer">
+                <button id="limpiarCarrito" onclick="removeAllItems()">
+                  Limpiar Carrito
+                </button>
+                <button id="compraButton">Comprar</button>
+              </div>
             </div>
-            <button onclick="toggleLogin()" id="loginBtn">
-              <i class="far fa-user"></i>
-            </button>
-            <div id="modal" style="display: none;">
 
-            </div>
-
+            <div id="modal" style="display: none"></div>
           </div>
         </div>
         <ul class="header-nav-ul">
           <li class="header-nav-ul-li">
             <a class="header-nav-ul-li-a" href="./index.html">PRODUCTOS</a>
           </li>
-          <select id="sel-category">
-
-          </select>
+          <select id="sel-category"></select>
           <li class="header-nav-ul-li">
             <a class="header-nav-ul-li-a" href="./pages/contacto.html">CONTACTO</a>
           </li>
@@ -66,65 +70,7 @@
     </section>
     <section class="recommended-products">
       <h2 class="recommended-products-h2">Cervezas recomendadas</h2>
-      <table class="recommended-products-table">
-        <tr class="recommended-products-table-tr">
-          <td class="recommended-products-table-tr-td">
-            <div class="recommended-products-table-tr-td-product">
-              <h3 class="recommended-products-table-tr-td-product-h3">
-                Cerveza Corona
-              </h3>
-              <p class="recommended-products-table-tr-td-product-p">
-                Esta cerveza de origen andino se caracteriza por un sabor
-                suave con dejos de roble
-              </p>
-              <button class="recommended-products-table-tr-td-product-button">
-                Comprar
-              </button>
-            </div>
-          </td>
-          <td class="recommended-products-table-tr-td-img-container">
-            <img class="recommended-products-table-tr-td-img" src="./img/corona.png" alt="Cerveza Corona" />
-          </td>
-        </tr>
-        <tr class="recommended-products-table-tr">
-          <td class="recommended-products-table-tr-td">
-            <div class="recommended-products-table-tr-td-product">
-              <h3 class="recommended-products-table-tr-td-product-h3">
-                Six Pack Brahma
-              </h3>
-              <p class="recommended-products-table-tr-td-product-p">
-                Brahma Dorada, es fácil de tomar, suave y ligera, con baja
-                carbonatación.
-              </p>
-              <button class="recommended-products-table-tr-td-product-button">
-                Comprar
-              </button>
-            </div>
-          </td>
-          <td class="recommended-products-table-tr-td-img-container">
-            <img class="recommended-products-table-tr-td-img" src="./img/brahma.jpg" alt="Six Pack Brahma" />
-          </td>
-        </tr>
-        <tr class="recommended-products-table-tr">
-          <td class="recommended-products-table-tr-td">
-            <div class="recommended-products-table-tr-td-product">
-              <h3 class="recommended-products-table-tr-td-product-h3">
-                Six Pack Brahma
-              </h3>
-              <p class="recommended-products-table-tr-td-product-p">
-                Brahma Dorada, es fácil de tomar, suave y ligera, con baja
-                carbonatación.
-              </p>
-              <button class="recommended-products-table-tr-td-product-button">
-                Comprar
-              </button>
-            </div>
-          </td>
-          <td class="recommended-products-table-tr-td-img-container">
-            <img class="recommended-products-table-tr-td-img" src="./img/brahma.jpg" alt="Six Pack Brahma" />
-          </td>
-        </tr>
-      </table>
+      <article id="recommended-products-product"></article>
     </section>
   </main>
   <footer class="footer">
@@ -137,7 +83,7 @@
       </div>
     </div>
     <div class="footer-content-img-container">
-    <a href="./index.html"><img class="footer-content-img" src="./img/b4y.jpg" alt="Logo de Birra4You" /></a>
+      <a href="./index.html"><img class="footer-content-img" src="./img/b4y.jpg" alt="Logo de Birra4You" /></a>
     </div>
     <p class="footer-content-p">
       Integrantes: Peña Matias - Macchia Sebastian
@@ -169,18 +115,43 @@
             var description = document.createElement("p");
             description.innerHTML = cerveza.description;
 
+            var divPrice = document.createElement("div");
+            divPrice.id = "divPrice";
+
             var price = document.createElement("p");
-            price.id = 'price';
-            price.innerHTML = "$" + cerveza.price;
+            price.id = "price";
+            price.innerHTML = "Precio: $";
+
+            var priceValue = document.createElement("p");
+            priceValue.id = "priceValue";
+            priceValue.innerHTML = cerveza.price;
+
+            var divStock = document.createElement("div");
+            divStock.id = "divStock";
+
+            var stock = document.createElement("p");
+            stock.id = "stock";
+            stock.innerHTML = "Stock: ";
+
+            var quantity = document.createElement("p");
+            quantity.id = "stockQuantity";
+            quantity.innerHTML = cerveza.quantity;
 
             var button = document.createElement("button");
             button.classList.add("addButton");
             button.innerHTML = "Agregar";
 
+            divPrice.appendChild(price);
+            divPrice.appendChild(priceValue);
+
+            divStock.appendChild(stock);
+            divStock.appendChild(quantity);
+
             div.appendChild(title);
             div.appendChild(img);
             div.appendChild(description);
-            div.appendChild(price);
+            div.appendChild(divPrice);
+            div.appendChild(divStock);
             div.appendChild(button);
 
             productos.appendChild(div);
@@ -218,18 +189,43 @@
             var description = document.createElement("p");
             description.innerHTML = cerveza.description;
 
+            var divPrice = document.createElement("div");
+            divPrice.id = "divPrice";
+
             var price = document.createElement("p");
-            price.id = 'price';
-            price.innerHTML = "$" + cerveza.price;
+            price.id = "price";
+            price.innerHTML = "Precio: $";
+
+            var priceValue = document.createElement("p");
+            priceValue.id = "priceValue";
+            priceValue.innerHTML = cerveza.price;
+
+            var divStock = document.createElement("div");
+            divStock.id = "divStock";
+
+            var stock = document.createElement("p");
+            stock.id = "stock";
+            stock.innerHTML = "Stock: ";
+
+            var quantity = document.createElement("p");
+            quantity.id = "stockQuantity";
+            quantity.innerHTML = cerveza.quantity;
 
             var button = document.createElement("button");
             button.classList.add("addButton");
             button.innerHTML = "Agregar";
 
+            divPrice.appendChild(price);
+            divPrice.appendChild(priceValue);
+
+            divStock.appendChild(stock);
+            divStock.appendChild(quantity);
+
             div.appendChild(title);
             div.appendChild(img);
             div.appendChild(description);
-            div.appendChild(price);
+            div.appendChild(divPrice);
+            div.appendChild(divStock);
             div.appendChild(button);
 
             productos.appendChild(div);
@@ -243,28 +239,56 @@
         });
     }
 
-
     function addToCart(event) {
       // Obtener el contenedor del producto padre del botón clicado
+
       var productoDiv = event.target.closest("#producto-div");
 
       // Obtener los elementos dentro del contenedor
       var title = productoDiv.querySelector("h3").innerHTML;
       var imgSrc = productoDiv.querySelector("img").getAttribute("src");
-      var price = parseFloat(productoDiv.querySelector("#price").innerHTML.replace("$", ""));
+      var quantity = productoDiv.querySelector("#stockQuantity").innerHTML;
+      var priceProducto = parseFloat(
+        productoDiv.querySelector("#priceValue").innerHTML
+      );
+
+      var productosDivs = document.querySelectorAll("#producto-div");
+
+      var mostrada = false;
+      productosDivs.forEach(function (producto) {
+        var titleProducto = producto.querySelector("h3").innerHTML;
+        var quantityProducto =
+          producto.querySelector("#stockQuantity").innerHTML;
+        if (titleProducto == title && quantityProducto > 0) {
+          quantityProducto--;
+          displayStock(producto, quantityProducto); // Actualizar el stock en la vista
+        } else if (titleProducto == title && quantity == 0 && !mostrada) {
+          alert("No hay stock disponible");
+          mostrada = true;
+        }
+      });
 
       // Verificar si el artículo ya está en el carrito
       var existingItem = shoppingCart.find((item) => item.title === title);
+
+      var sumado = false;
       if (existingItem) {
         // Si el artículo ya está en el carrito, incrementar la cantidad
         existingItem.quantity++;
+        existingItem.stock--;
+        if (!sumado) {
+          existingItem.priceValue += priceProducto;
+          sumado = true;
+        }
       } else {
         // Si el artículo no está en el carrito, agregarlo con una cantidad de 1
         shoppingCart.push({
           title: title,
           imgSrc: imgSrc,
-          price: price,
-          quantity: 1
+          quantity: 1,
+          price: "Precio: $",
+          stock: quantity - 1,
+          priceValue: priceProducto,
         });
       }
 
@@ -288,6 +312,16 @@
         title.id = "title";
         title.innerHTML = item.title;
 
+        var divStock = document.createElement("div");
+        divStock.id = "divStock";
+
+        var stock = document.createElement("p");
+        stock.innerHTML = "Stock: ";
+
+        var stockQuantity = document.createElement("p");
+        stockQuantity.id = "stockQuantity";
+        stockQuantity.innerHTML = item.stock;
+
         var divCant = document.createElement("div");
         divCant.id = "divCant";
 
@@ -301,6 +335,7 @@
         });
 
         var quantityValue = document.createElement("p");
+        quantityValue.id = "quantityValue";
         quantityValue.innerHTML = item.quantity;
 
         var increaseButton = document.createElement("button");
@@ -309,27 +344,39 @@
           increaseQuantity(index);
         });
 
+        var divPrice = document.createElement("div");
+        divPrice.id = "divPrice";
+
         var price = document.createElement("p");
-        price.innerHTML = "Precio: $" + item.price.toFixed(2);
+        price.innerHTML = item.price;
+
+        var priceValue = document.createElement("p");
+        priceValue.id = "priceValue";
+        priceValue.innerHTML = item.priceValue;
 
         var deleteButton = document.createElement("button");
-        deleteButton.innerHTML = 'Eliminar ' + '<i class="fas fa-trash-alt"></i>';
+        deleteButton.innerHTML =
+          "Eliminar " + '<i class="fas fa-trash-alt"></i>';
         deleteButton.addEventListener("click", function () {
           removeItem(index);
         });
 
-        quantity.appendChild(decreaseButton);
-        quantity.appendChild(quantityValue);
-        quantity.appendChild(increaseButton);
-
+        divStock.appendChild(stock);
+        divStock.appendChild(stockQuantity);
 
         divCant.appendChild(quantity);
+        divCant.appendChild(decreaseButton);
+        divCant.appendChild(quantityValue);
+        divCant.appendChild(increaseButton);
 
+        divPrice.appendChild(price);
+        divPrice.appendChild(priceValue);
 
         li.appendChild(title);
         li.appendChild(img);
+        li.appendChild(divStock);
         li.appendChild(divCant);
-        li.appendChild(price);
+        li.appendChild(divPrice);
         li.appendChild(deleteButton);
 
         cartItems.appendChild(li);
@@ -340,26 +387,124 @@
       cart.style.display = "block";
     }
 
-    function decreaseQuantity(index) {
-      if (shoppingCart[index].quantity > 1) {
-        shoppingCart[index].quantity--;
+    function increaseQuantity(index) {
+      var cartItems = document.getElementById("cart-items");
+      var productoDiv = cartItems.children[index];
+
+      // Obtener los elementos dentro del contenedor
+      var title = productoDiv.querySelector("#title").innerHTML;
+      var imgSrc = productoDiv.querySelector("img").getAttribute("src");
+
+      var productos = document.querySelectorAll("#producto-div");
+
+      var existingItem = shoppingCart.find((item) => item.title === title);
+      var sumado = false;
+      if (existingItem && existingItem.stock >= 1) {
+        existingItem.quantity++;
+        existingItem.stock--;
+        displayStock(productoDiv, existingItem.stock);
+        displayQuantityInCart(productoDiv, existingItem.quantity);
+        productos.forEach(function (cerveza) {
+          var titleCerveza = cerveza.querySelector("h3").innerHTML;
+          var quantityCerveza =
+            cerveza.querySelector("#stockQuantity").innerHTML;
+          var priceCerveza = cerveza.querySelector("#priceValue").innerHTML;
+          if (titleCerveza == title && quantityCerveza >= 1) {
+            quantityCerveza--;
+            if (!sumado) {
+              existingItem.priceValue += parseInt(priceCerveza);
+              sumado = true;
+            }
+            displayPriceValue(productoDiv, existingItem.priceValue);
+            displayStock(cerveza, quantityCerveza);
+          } else if (titleCerveza == title && quantityCerveza == 0) {
+            quantityCerveza = existingItem.stock;
+            displayStock(cerveza, quantityCerveza);
+          }
+        });
+      } else if (existingItem && existingItem.stock == 0) {
+        displayStock(productoDiv, existingItem.stock);
+        alert("No hay mas stock");
       }
-      else if (shoppingCart[index].quantity = 1) {
-        removeItem(index);
-      }
-      displayCart();
     }
 
-    function increaseQuantity(index) {
-      shoppingCart[index].quantity++;
-      displayCart();
+    function decreaseQuantity(index) {
+      var cartItems = document.getElementById("cart-items");
+      var productoDiv = cartItems.children[index];
+
+      // Obtener los elementos dentro del contenedor
+      var title = productoDiv.querySelector("#title").innerHTML;
+      var imgSrc = productoDiv.querySelector("img").getAttribute("src");
+      var price = parseFloat(
+        productoDiv.querySelector("#priceValue").innerHTML
+      );
+
+      var productos = document.querySelectorAll("#producto-div");
+
+      var existingItem = shoppingCart.find((item) => item.title === title);
+      var restado = false;
+      if (existingItem && existingItem.quantity > 1) {
+        existingItem.quantity--;
+        existingItem.stock++;
+        displayStock(productoDiv, existingItem.stock);
+        displayQuantityInCart(productoDiv, existingItem.quantity);
+        productos.forEach(function (cerveza) {
+          var titleCerveza = cerveza.querySelector("h3").innerHTML;
+          var quantityCerveza =
+            cerveza.querySelector("#stockQuantity").innerHTML;
+          var priceCerveza = cerveza.querySelector("#priceValue").innerHTML;
+          quantityCerveza++;
+          if (!restado) {
+            existingItem.priceValue -= parseInt(priceCerveza);
+            restado = true;
+          }
+          displayPriceValue(productoDiv, existingItem.priceValue);
+          displayStock(cerveza, quantityCerveza);
+        });
+      } else if (existingItem && existingItem.quantity == 1) {
+        removeItem(productoDiv);
+        displayStock(productoDiv, existingItem.stock);
+      }
     }
 
     function removeItem(index) {
-      shoppingCart.splice(index, 1);
-      displayCart();
-    }
+      var cartItems = document.getElementById("cart-items");
+      var productoDiv = cartItems.children[index];
 
+      // Obtener los elementos dentro del contenedor
+      var title = productoDiv.querySelector("#title").innerHTML;
+      var imgSrc = productoDiv.querySelector("img").getAttribute("src");
+      var quantity = productoDiv.querySelector("#quantityValue").innerHTML;
+      var price = parseFloat(
+        productoDiv.querySelector("#priceValue").innerHTML
+      );
+
+      var productosDivs = document.querySelectorAll("#cart-items");
+      var productos = document.querySelectorAll("#producto-div");
+
+      var mostrada = false;
+      productosDivs.forEach(function (producto) {
+        var titleProducto = producto.querySelector("#title").innerHTML;
+        var quantityProducto =
+          producto.querySelector("#quantityValue").innerHTML;
+        var existingItem = shoppingCart.find((item) => item.title === title);
+        var removeIndex = shoppingCart.indexOf(existingItem);
+        if (existingItem) {
+          shoppingCart.splice(removeIndex, 1);
+          displayCart();
+          productos.forEach(function (cerveza) {
+            var titleCerveza = cerveza.querySelector("h3").innerHTML;
+            var quantityCerveza =
+              cerveza.querySelector("#stockQuantity").innerHTML;
+            if (titleProducto == title && quantityCerveza > 0) {
+              quantityCerveza =
+                parseInt(quantityCerveza) + parseInt(quantityProducto);
+              displayStock(cerveza, quantityCerveza);
+            }
+          });
+        }
+      });
+    }
 
     function toggleCart() {
       var cart = document.getElementById("cart");
@@ -417,17 +562,15 @@
           if (selectedCategory) {
             getAllCervezasByCategory(selectedCategory);
           }
-
-
-
         })
-        .then(getAllCervezas());
-    };
-
+        .then(getAllCervezas())
+        .then(getAllRecommended());
+    }
 
     var busquedaInput = document.getElementById("buscador");
     var botonBuscar = document.getElementById("boton-buscar");
     var productosContainer = document.getElementById("productos");
+    var recommendedProducts = document.getElementById("recommended-products-product");
 
     function searchPage() {
       var searchText = busquedaInput.value.toLowerCase();
@@ -436,6 +579,7 @@
         .then((resp) => resp.json())
         .then((cervezasArray) => {
           productosContainer.innerHTML = "";
+          recommendedProducts.innerHTML = "";
 
           const filteredCervezas = cervezasArray.filter((cerveza) =>
             cerveza.title.toLowerCase().includes(searchText)
@@ -444,6 +588,7 @@
           if (filteredCervezas.length === 0) {
             // Mostrar mensaje de no encontrado
             alert("No se encontraron productos con ese texto");
+
           } else {
             filteredCervezas.forEach((cerveza) => {
               var div = document.createElement("div");
@@ -458,40 +603,147 @@
               var description = document.createElement("p");
               description.innerHTML = cerveza.description;
 
+              var divPrice = document.createElement("div");
+              divPrice.id = "divPrice";
+
               var price = document.createElement("p");
               price.id = "price";
-              price.innerHTML = "$" + cerveza.price;
+              price.innerHTML = "Precio: $";
+
+              var priceValue = document.createElement("p");
+              priceValue.id = "priceValue";
+              priceValue.innerHTML = cerveza.price;
+
+              var divStock = document.createElement("div");
+              divStock.id = "divStock";
+
+              var stock = document.createElement("p");
+              stock.id = "stock";
+              stock.innerHTML = "Stock: ";
+
+              var quantity = document.createElement("p");
+              quantity.id = "stockQuantity";
+              quantity.innerHTML = cerveza.quantity;
 
               var button = document.createElement("button");
               button.classList.add("addButton");
               button.innerHTML = "Agregar";
 
+              divPrice.appendChild(price);
+              divPrice.appendChild(priceValue);
+
+              divStock.appendChild(stock);
+              divStock.appendChild(quantity);
+
               div.appendChild(title);
               div.appendChild(img);
               div.appendChild(description);
-              div.appendChild(price);
+              div.appendChild(divPrice);
+              div.appendChild(divStock);
               div.appendChild(button);
 
-              productosContainer.appendChild(div);
+              productos.appendChild(div);
             });
 
             // Ocultar los productos no coincidentes
             var allProductos = document.querySelectorAll("#producto-div");
             allProductos.forEach((producto) => {
-              if (!filteredCervezas.some((cerveza) => producto.querySelector("h3").innerHTML === cerveza.title)) {
+              if (
+                !filteredCervezas.some(
+                  (cerveza) =>
+                    producto.querySelector("h3").innerHTML === cerveza.title
+                )
+              ) {
                 producto.style.display = "none";
               }
             });
+            
 
             // Agregar evento de clic a los botones de agregar cerveza
             var addButtons = document.getElementsByClassName("addButton");
             for (var i = 0; i < addButtons.length; i++) {
               addButtons[i].addEventListener("click", addToCart);
             }
+
+            for (let i = 0; i < 3; i++) {
+            // Obtener solo las 3 primeras cervezas
+            const cervezasRecomendadas = cervezasArray[i];
+            
+            var div = document.createElement("div");
+            div.id = "producto-div";
+
+            var title = document.createElement("h3");
+            title.innerHTML = cervezasRecomendadas.title;
+
+            var img = document.createElement("img");
+            img.src = cervezasRecomendadas.image;
+
+            var description = document.createElement("p");
+            description.innerHTML = cervezasRecomendadas.description;
+
+            var divPrice = document.createElement("div");
+            divPrice.id = "divPrice";
+
+            var price = document.createElement("p");
+            price.id = "price";
+            price.innerHTML = "Precio: $";
+
+            var priceValue = document.createElement("p");
+            priceValue.id = "priceValue";
+            priceValue.innerHTML = cervezasRecomendadas.price;
+
+            var divStock = document.createElement("div");
+            divStock.id = "divStock";
+
+            var stock = document.createElement("p");
+            stock.id = "stock";
+            stock.innerHTML = "Stock: ";
+
+            var quantity = document.createElement("p");
+            quantity.id = "stockQuantity";
+            quantity.innerHTML = cervezasRecomendadas.quantity;
+
+            var button = document.createElement("button");
+            button.classList.add("addButton");
+            button.innerHTML = "Agregar";
+
+            divPrice.appendChild(price);
+            divPrice.appendChild(priceValue);
+
+            divStock.appendChild(stock);
+            divStock.appendChild(quantity);
+
+            div.appendChild(title);
+            div.appendChild(img);
+            div.appendChild(description);
+            div.appendChild(divPrice);
+            div.appendChild(divStock);
+            div.appendChild(button);
+
+            recommendedProducts.appendChild(div);
+          }
+          
+          var allRecommended = document.querySelectorAll("#producto-div");
+          allRecommended.forEach((recomendado) => {
+              if (
+                !filteredCervezas.some(
+                  (beer) =>
+                    recomendado.querySelector("h3").innerHTML === beer.title
+                )
+              ) {
+                recomendado.style.display = "none";
+              }
+            });
+
+
+          var addButtons = document.getElementsByClassName("addButton");
+          for (var f = 0; f < addButtons.length; f++) {
+            addButtons[f].addEventListener("click", addToCart);
+          }
           }
         });
 
-
+      
       // Limpiar el campo de búsqueda
       busquedaInput.value = "";
     }
@@ -516,14 +768,14 @@
       closeSpan.onclick = closeLogin;
 
       let formH2 = document.createElement("h2");
-      formH2.innerHTML = "Iniciar Sesion"
+      formH2.innerHTML = "Iniciar Sesion";
 
       let form = document.createElement("form");
       form.id = "login-form";
 
       let username = document.createElement("label");
       username.for = "username";
-      username.innerHTML = "Usuario:"
+      username.innerHTML = "Usuario:";
 
       let usernameInput = document.createElement("input");
       usernameInput.type = "text";
@@ -533,7 +785,7 @@
 
       let password = document.createElement("label");
       password.for = "password";
-      password.innerHTML = "Contraseña:"
+      password.innerHTML = "Contraseña:";
 
       let passwordInput = document.createElement("input");
       passwordInput.type = "text";
@@ -541,12 +793,10 @@
       passwordInput.name = "password";
       passwordInput.required = true;
 
-
       let submit = document.createElement("button");
       submit.type = "submit";
       submit.innerHTML = "Ingresar";
       submit.onclick = ingresar;
-
 
       form.appendChild(username);
       form.appendChild(usernameInput);
@@ -572,24 +822,127 @@
       modal.style.display = "none";
     }
 
-    function ingresar(){
+    function ingresar() {
       let username = document.getElementById("username");
       let password = document.getElementById("password");
 
       if (username.value === "admin") {
-        if (password.value === "admin"){
-          form.close();
+        if (password.value === "admin") {
+          closeLogin();
+        } else {
+          alert("Contraseña incorrecta");
         }
-        else{
-          alert("Contraseña incorrecta")
-        }
+      } else {
+        alert("Usuario incorrecto");
       }
-      else{
-        alert("Usuario incorrecto")
-      } 
-      
-
     }
+
+    function getAllRecommended() {
+      fetch("https://b4you.free.mockoapp.net/beers")
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((cervezasArray) => {
+          let productos = document.getElementById(
+            "recommended-products-product"
+          );
+          for (let i = 0; i < 3; i++) {
+            // Obtener solo las 3 primeras cervezas
+            const cerveza = cervezasArray[i];
+            var div = document.createElement("div");
+            div.id = "producto-div";
+
+            var title = document.createElement("h3");
+            title.innerHTML = cerveza.title;
+
+            var img = document.createElement("img");
+            img.src = cerveza.image;
+
+            var description = document.createElement("p");
+            description.innerHTML = cerveza.description;
+
+            var divPrice = document.createElement("div");
+            divPrice.id = "divPrice";
+
+            var price = document.createElement("p");
+            price.id = "price";
+            price.innerHTML = "Precio: $";
+
+            var priceValue = document.createElement("p");
+            priceValue.id = "priceValue";
+            priceValue.innerHTML = cerveza.price;
+
+            var divStock = document.createElement("div");
+            divStock.id = "divStock";
+
+            var stock = document.createElement("p");
+            stock.id = "stock";
+            stock.innerHTML = "Stock: ";
+
+            var quantity = document.createElement("p");
+            quantity.id = "stockQuantity";
+            quantity.innerHTML = cerveza.quantity;
+
+            var button = document.createElement("button");
+            button.classList.add("addButton");
+            button.innerHTML = "Agregar";
+
+            divPrice.appendChild(price);
+            divPrice.appendChild(priceValue);
+
+            divStock.appendChild(stock);
+            divStock.appendChild(quantity);
+
+            div.appendChild(title);
+            div.appendChild(img);
+            div.appendChild(description);
+            div.appendChild(divPrice);
+            div.appendChild(divStock);
+            div.appendChild(button);
+
+            productos.appendChild(div);
+          }
+
+          // Agregar evento de clic a los botones de agregar cerveza
+          var addButtons = document.getElementsByClassName("addButton");
+          for (var i = 0; i < addButtons.length; i++) {
+            addButtons[i].addEventListener("click", addToCart);
+          }
+        });
+    }
+
+    function displayStock(productoDiv, stock) {
+      var stockElement = productoDiv.querySelector("#stockQuantity");
+      stockElement.innerHTML = stock;
+    }
+
+    function displayPriceValue(productoDiv, priceValue) {
+      var priceElement = productoDiv.querySelector("#priceValue");
+      priceElement.innerHTML = priceValue;
+    }
+
+    function displayQuantityInCart(productoDiv, stock) {
+      var stockElement = productoDiv.querySelector("#quantityValue");
+      stockElement.innerHTML = stock;
+    }
+
+    var compraButton = document.getElementById("compraButton");
+    compraButton.addEventListener("click", function () {
+      window.location.href = "/pages/compra.html";
+    });
+
+    // Agregar evento de clic al botón "limpiarCarrito"
+    document.getElementById("limpiarCarrito").addEventListener("click", removeAllItems);
+
+
+    function removeAllItems() {
+      for (var i = shoppingCart.length - 1; i >= 0; i--) {
+        removeItem(i);
+      }
+      displayCart();
+      toggleCart();
+    }
+
 
   </script>
 </body>
