@@ -1,5 +1,15 @@
 // Llamar a la función para obtener todas las cervezas al cargar la página
-window.onload = inicio;
+
+window.onload = function() {
+  // Obtener el nombre de la página actual
+  var currentPage = window.location.pathname;
+
+  // Verificar si la página actual no contiene "compra.html"
+  if (currentPage.includes("index.html")) {
+    // Llamar a la función "inicio"
+    inicio();
+  }
+};
 var shoppingCart = [];
 
 function getAllCervezas() {
@@ -338,12 +348,10 @@ function decreaseQuantity(index) {
 
   // Obtener los elementos dentro del contenedor
   var title = productoDiv.querySelector("#title").innerHTML;
-  var imgSrc = productoDiv.querySelector("img").getAttribute("src");
-  var price = parseFloat(productoDiv.querySelector("#priceValue").innerHTML);
 
   var productos = document.querySelectorAll("#producto-div");
 
-  var existingItem = shoppingCart.find((item) => item.title === title);
+  var existingItem = shoppingCart.find((item) => item.title == title);
   var restado = false;
   if (existingItem && existingItem.quantity > 1) {
     existingItem.quantity--;
@@ -354,7 +362,7 @@ function decreaseQuantity(index) {
       var titleCerveza = cerveza.querySelector("h3").innerHTML;
       var quantityCerveza = cerveza.querySelector("#stockQuantity").innerHTML;
       var priceCerveza = cerveza.querySelector("#priceValue").innerHTML;
-      if (titleCerveza == title) {
+      if (titleCerveza == title ) {
         quantityCerveza++;
         if (!restado) {
           existingItem.priceValue -= parseInt(priceCerveza);
@@ -365,7 +373,8 @@ function decreaseQuantity(index) {
       } 
     });
   } else if (existingItem && existingItem.quantity == 1) {
-    console.log("ebtre");
+    existingItem.quantity--;
+    existingItem.stock++;
     productos.forEach(function (cerveza) {
       var titleCerveza = cerveza.querySelector("h3").innerHTML;
       var quantityCerveza = cerveza.querySelector("#stockQuantity").innerHTML;
@@ -374,8 +383,9 @@ function decreaseQuantity(index) {
         displayStock(cerveza, quantityCerveza);
       }
     });
-    removeItem(existingItem);
-    displayStock(productoDiv, existingItem.stock);
+    removeItem(index);
+    
+    
   }
 }
 
@@ -385,33 +395,28 @@ function removeItem(index) {
 
   // Obtener los elementos dentro del contenedor
   var title = productoDiv.querySelector("#title").innerHTML;
-  var imgSrc = productoDiv.querySelector("img").getAttribute("src");
-  var quantity = productoDiv.querySelector("#quantityValue").innerHTML;
-  var price = parseFloat(productoDiv.querySelector("#priceValue").innerHTML);
 
-  var productosDivs = document.querySelectorAll("#cart-items");
   var productos = document.querySelectorAll("#producto-div");
 
-  var mostrada = false;
-  productosDivs.forEach(function (producto) {
-    var titleProducto = producto.querySelector("#title").innerHTML;
-    var quantityProducto = producto.querySelector("#quantityValue").innerHTML;
-    var existingItem = shoppingCart.find((item) => item.title === title);
+  var existingItem = shoppingCart.find((item) => item.title === title);
+  if (existingItem){
     var removeIndex = shoppingCart.indexOf(existingItem);
-    if (existingItem) {
       shoppingCart.splice(removeIndex, 1);
       displayCart();
       productos.forEach(function (cerveza) {
         var titleCerveza = cerveza.querySelector("h3").innerHTML;
         var quantityCerveza = cerveza.querySelector("#stockQuantity").innerHTML;
-        if (titleProducto == title && quantityCerveza > 0) {
-          quantityCerveza =
-            parseInt(quantityCerveza) + parseInt(quantityProducto);
+        if (title == titleCerveza && quantityCerveza > 0) {
+          quantityCerveza = parseInt(quantityCerveza) + parseInt(existingItem.quantity);
           displayStock(cerveza, quantityCerveza);
         }
+        displayStock(cerveza, quantityCerveza);
       });
-    }
-  });
+  }
+  if (shoppingCart.length == 0){
+    displayCart();
+    toggleCart();
+  }
 }
 
 function toggleCart() {
@@ -661,12 +666,31 @@ function searchPage() {
   busquedaInput.value = "";
 }
 
-// Asignar la función de búsqueda al evento click del botón
-botonBuscar.addEventListener("click", function () {
-  if (busquedaInput.value.trim() !== "") {
-    searchPage();
+var currentPage = window.location.pathname;
+
+// Verificar si la página actual no contiene "compra.html"
+if (currentPage.includes("index.html")) {
+  var compraButton = document.getElementById("compraButton");
+  // Asignar la función de búsqueda al evento click del botón
+  botonBuscar.addEventListener("click", function () {
+    if (busquedaInput.value.trim() !== "") {
+      searchPage();
+    }
+  });
+  compraButton.addEventListener("click", function () {
+    window.location.href = "/pages/compra.html";
+  });
+}
+else {
+  if (currentPage.includes("contacto.html")){
+  var compraButton = document.getElementById("compraButton");
+  // Verificar si estamos en index.html y redirigir en consecuencia
+    compraButton.addEventListener("click", function () {
+      // Redirigir a cualquier otra página que no sea index.html
+      window.location.href = "compra.html";
+    });
   }
-});
+}
 
 function loginForm() {
   let divLogin = document.getElementById("modal");
@@ -839,20 +863,17 @@ function displayQuantityInCart(productoDiv, stock) {
   stockElement.innerHTML = stock;
 }
 
-var compraButton = document.getElementById("compraButton");
-compraButton.addEventListener("click", function () {
-  window.location.href = "/pages/compra.html";
-});
-
-// Agregar evento de clic al botón "limpiarCarrito"
-document
-  .getElementById("limpiarCarrito")
-  .addEventListener("click", removeAllItems);
 
 function removeAllItems() {
-  for (var i = shoppingCart.length - 1; i >= 0; i--) {
-    removeItem(i);
+  if (shoppingCart.length > 0){
+    for (var i = shoppingCart.length - 1; i >= 0; i--) {
+      removeItem(i);
+    }
+    displayCart();
+    toggleCart();
   }
-  displayCart();
-  toggleCart();
+  else{
+    displayCart();
+    toggleCart();
+  }
 }
