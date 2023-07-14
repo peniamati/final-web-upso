@@ -3,9 +3,9 @@
 window.onload = function() {
   // Obtener el nombre de la página actual
   var currentPage = window.location.pathname;
-  
-  // Verificar si la página actual no contiene "compra.html" ni "contacto.html"
-  if (!currentPage.includes("compra.html") && !currentPage.includes("contacto.html")) {
+
+  // Verificar si la página actual no es "compra.html" ni "contacto.html"
+  if (currentPage.indexOf("compra.html") === -1 && currentPage.indexOf("contacto.html") === -1) {
     // Llamar a la función "inicio"
     inicio();
   }
