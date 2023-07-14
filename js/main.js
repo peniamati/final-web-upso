@@ -440,10 +440,18 @@ function inicio() {
     const selectedOption = selector.value;
     
     if (selectedOption !== "") {
-      const searchParams = new URLSearchParams();
-      searchParams.set("category", selectedOption);
-      const newURL = urlPagina.replace(/\/index\.html.*$/, "/index.html") + "?" + searchParams.toString();
-      window.location.href = newURL;
+      if (urlPagina.indexOf("index.html") === -1){
+        const searchParams = new URLSearchParams();
+        searchParams.set("category", selectedOption);
+        const newURL = urlPagina +"/index.html?" + searchParams.toString();
+        window.location.href = newURL;
+      }
+      else{
+        const searchParams = new URLSearchParams();
+        searchParams.set("category", selectedOption);
+        const newURL = urlPagina.replace(/\/index\.html.*$/, "/index.html") + "?" + searchParams.toString();
+        window.location.href = newURL;
+      }
     }
   });
 
