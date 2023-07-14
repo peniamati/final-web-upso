@@ -3,12 +3,12 @@
 window.onload = function() {
   // Obtener el nombre de la página actual
   var currentPage = window.location.pathname;
-    // Verificar si la página actual no contiene "compra.html"
-    if (!currentPage.includes("compra.html") || !currentPage.includes("contacto.html")) {
-      // Llamar a la función "inicio"
-      inicio();
-    }
   
+  // Verificar si la página actual no contiene "compra.html" ni "contacto.html"
+  if (!currentPage.includes("compra.html") && !currentPage.includes("contacto.html")) {
+    // Llamar a la función "inicio"
+    inicio();
+  }
 }
 var shoppingCart = [];
 
