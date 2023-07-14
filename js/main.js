@@ -3,20 +3,13 @@
 window.onload = function() {
   // Obtener el nombre de la página actual
   var currentPage = window.location.pathname;
-  var iniciada = false;
-
-  if (!iniciada){
-    inicio;
-    iniciada = true;
-  }
-  else{
     // Verificar si la página actual no contiene "compra.html"
-    if (currentPage.includes("index.html")) {
+    if (!currentPage.includes("compra.html") || !currentPage.includes("contacto.html")) {
       // Llamar a la función "inicio"
       inicio();
     }
-  }
-};
+  
+}
 var shoppingCart = [];
 
 function getAllCervezas() {
