@@ -505,9 +505,6 @@ function inicio() {
 var busquedaInput = document.getElementById("buscador");
 var botonBuscar = document.getElementById("boton-buscar");
 var productosContainer = document.getElementById("productos");
-var recommendedProducts = document.getElementById(
-  "recommended-products-product"
-);
 
 function searchPage() {
   var searchText = busquedaInput.value.toLowerCase();
@@ -516,7 +513,6 @@ function searchPage() {
     .then((resp) => resp.json())
     .then((cervezasArray) => {
       productosContainer.innerHTML = "";
-      recommendedProducts.innerHTML = "";
 
       const filteredCervezas = cervezasArray.filter((cerveza) =>
         cerveza.title.toLowerCase().includes(searchText)
@@ -525,6 +521,7 @@ function searchPage() {
       if (filteredCervezas.length === 0) {
         // Mostrar mensaje de no encontrado
         alert("No se encontraron productos con ese texto");
+        getAllCervezas();
       } else {
         filteredCervezas.forEach((cerveza) => {
           var div = document.createElement("div");
@@ -578,11 +575,11 @@ function searchPage() {
           div.appendChild(divStock);
           div.appendChild(button);
 
-          productos.appendChild(div);
+          productosContainer.appendChild(div);
         });
 
         // Ocultar los productos no coincidentes
-        var allProductos = document.querySelectorAll("#producto-div");
+        var allProductos = productosContainer.querySelectorAll("#producto-div");
         allProductos.forEach((producto) => {
           if (
             !filteredCervezas.some(
@@ -599,86 +596,13 @@ function searchPage() {
         for (var i = 0; i < addButtons.length; i++) {
           addButtons[i].addEventListener("click", addToCart);
         }
-
-        for (let i = 0; i < 3; i++) {
-          // Obtener solo las 3 primeras cervezas
-          const cervezasRecomendadas = cervezasArray[i];
-
-          var div = document.createElement("div");
-          div.id = "producto-div";
-
-          var title = document.createElement("h3");
-          title.innerHTML = cervezasRecomendadas.title;
-
-          var img = document.createElement("img");
-          img.src = cervezasRecomendadas.image;
-
-          var description = document.createElement("p");
-          description.innerHTML = cervezasRecomendadas.description;
-
-          var divPrice = document.createElement("div");
-          divPrice.id = "divPrice";
-
-          var price = document.createElement("p");
-          price.id = "price";
-          price.innerHTML = "Precio: $";
-
-          var priceValue = document.createElement("p");
-          priceValue.id = "priceValue";
-          priceValue.innerHTML = cervezasRecomendadas.price;
-
-          var divStock = document.createElement("div");
-          divStock.id = "divStock";
-
-          var stock = document.createElement("p");
-          stock.id = "stock";
-          stock.innerHTML = "Stock: ";
-
-          var quantity = document.createElement("p");
-          quantity.id = "stockQuantity";
-          quantity.innerHTML = cervezasRecomendadas.quantity;
-
-          var button = document.createElement("button");
-          button.classList.add("addButton");
-          button.innerHTML = "Agregar";
-
-          divPrice.appendChild(price);
-          divPrice.appendChild(priceValue);
-
-          divStock.appendChild(stock);
-          divStock.appendChild(quantity);
-
-          div.appendChild(title);
-          div.appendChild(img);
-          div.appendChild(description);
-          div.appendChild(divPrice);
-          div.appendChild(divStock);
-          div.appendChild(button);
-
-          recommendedProducts.appendChild(div);
-        }
-
-        var allRecommended = document.querySelectorAll("#producto-div");
-        allRecommended.forEach((recomendado) => {
-          if (
-            !filteredCervezas.some(
-              (beer) => recomendado.querySelector("h3").innerHTML === beer.title
-            )
-          ) {
-            recomendado.style.display = "none";
-          }
-        });
-
-        var addButtons = document.getElementsByClassName("addButton");
-        for (var f = 0; f < addButtons.length; f++) {
-          addButtons[f].addEventListener("click", addToCart);
-        }
       }
     });
 
   // Limpiar el campo de búsqueda
   busquedaInput.value = "";
 }
+
 
 var currentPage = window.location.pathname;
 
