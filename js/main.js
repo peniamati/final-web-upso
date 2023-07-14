@@ -6,7 +6,7 @@ window.onload = function() {
   var iniciada = false;
 
   if (!iniciada){
-    inicio();
+    inicio;
     iniciada = true;
   }
   else{
