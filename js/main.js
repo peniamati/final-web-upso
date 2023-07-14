@@ -438,12 +438,24 @@ function inicio() {
   selector.addEventListener("change", function() {
     var urlPagina = window.location.href;
     const selectedOption = selector.value;
-    
+  
     if (selectedOption !== "") {
-      const basePath = urlPagina.replace(/\/[^/]+\.html.*$/, "/index.html");
-      const searchParams = new URLSearchParams();
-      searchParams.set("category", selectedOption);
-      const newURL = basePath + "?" + searchParams.toString();
+      // Verificar si la URL contiene "/index.html"
+      if (!urlPagina.includes("/index.html")) {
+        // Agregar "/index.html" a la URL
+        urlPagina += "index.html";
+      }
+  
+      // Crear una nueva instancia de URLSearchParams con los parámetros existentes
+      const newSearchParams = new URLSearchParams(searchParams);
+  
+      // Establecer el nuevo valor de "category" en los parámetros de búsqueda
+      newSearchParams.set("category", selectedOption);
+  
+      // Construir la nueva URL con los parámetros de búsqueda actualizados
+      const newURL = urlPagina.split("?")[0] + "?" + newSearchParams.toString();
+  
+      // Redireccionar a la nueva URL
       window.location.href = newURL;
     }
   });
