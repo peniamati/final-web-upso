@@ -435,15 +435,16 @@ function inicio() {
   const searchParams = new URLSearchParams(window.location.search);
   const selectedCategory = searchParams.get("category");
 
-  selector.addEventListener("change", function () {
+  selector.addEventListener("change", function() {
     var urlPagina = window.location.href;
     const selectedOption = selector.value;
+    
     if (selectedOption !== "") {
-        const searchParams = new URLSearchParams();
-        searchParams.set("category", selectedOption);
-        const newURL = urlPagina +"/index.html?" + searchParams.toString();
-        window.location.href = newURL;
-    } 
+      const searchParams = new URLSearchParams();
+      searchParams.set("category", selectedOption);
+      const newURL = urlPagina.replace(/\/index\.html.*$/, "/index.html") + "?" + searchParams.toString();
+      window.location.href = newURL;
+    }
   });
 
   fetch("https://b4you.free.mockoapp.net/categories")
