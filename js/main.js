@@ -5,7 +5,7 @@ window.onload = function() {
   var currentPage = window.location.pathname;
 
   // Verificar si la página actual no contiene "compra.html"
-  if (currentPage.includes("index.html")) {
+  if (currentPage.includes("index.html") || currentPage.includes("")) {
     // Llamar a la función "inicio"
     inicio();
   }
