@@ -439,19 +439,11 @@ function inicio() {
     var urlPagina = window.location.href;
     const selectedOption = selector.value;
     if (selectedOption !== "") {
-      if (urlPagina.indexOf("index.html") === -1){
         const searchParams = new URLSearchParams();
         searchParams.set("category", selectedOption);
         const newURL = urlPagina +"/index.html?" + searchParams.toString();
         window.location.href = newURL;
-      }
-      else{
-      const searchParams = new URLSearchParams();
-      searchParams.set("category", selectedOption);
-      const newURL = "/index.html?" + searchParams.toString();
-      window.location.href = newURL;
-    }
-    }
+    } 
   });
 
   fetch("https://b4you.free.mockoapp.net/categories")
