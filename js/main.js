@@ -446,10 +446,17 @@ function inicio() {
         urlPagina += "index.html";
       }
   
-      // Crear una nueva instancia de URLSearchParams con los parámetros existentes
-      const newSearchParams = new URLSearchParams(searchParams);
+      // Crear una nueva instancia de URLSearchParams
+      const newSearchParams = new URLSearchParams();
   
-      // Establecer el nuevo valor de "category" en los parámetros de búsqueda
+      // Agregar los parámetros existentes a la nueva instancia, excepto "category"
+      searchParams.forEach((value, key) => {
+        if (key !== "category") {
+          newSearchParams.append(key, value);
+        }
+      });
+  
+      // Agregar el nuevo valor de "category" a los parámetros de búsqueda
       newSearchParams.set("category", selectedOption);
   
       // Construir la nueva URL con los parámetros de búsqueda actualizados
