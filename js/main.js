@@ -439,17 +439,10 @@ function inicio() {
     var urlPagina = window.location.href;
     const selectedOption = selector.value;
     if (selectedOption !== "") {
-      if (urlPagina == "index.html") {
-        const searchParams = new URLSearchParams();
-        searchParams.set("category", selectedOption);
-        const newURL = "./index.html?" + searchParams.toString();
-        window.location.href = newURL;
-      } else {
-        const searchParams = new URLSearchParams();
-        searchParams.set("category", selectedOption);
-        const newURL = "../index.html?" + searchParams.toString();
-        window.location.href = newURL;
-      }
+      const searchParams = new URLSearchParams();
+      searchParams.set("category", selectedOption);
+      const newURL = "/index.html?" + searchParams.toString();
+      window.location.href = newURL;
     }
   });
 
