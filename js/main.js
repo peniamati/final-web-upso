@@ -3,11 +3,18 @@
 window.onload = function() {
   // Obtener el nombre de la página actual
   var currentPage = window.location.pathname;
+  var iniciada = false;
 
-  // Verificar si la página actual no contiene "compra.html"
-  if (currentPage.includes("index.html") || currentPage.includes("")) {
-    // Llamar a la función "inicio"
+  if (!iniciada){
     inicio();
+    iniciada = true;
+  }
+  else{
+    // Verificar si la página actual no contiene "compra.html"
+    if (currentPage.includes("index.html")) {
+      // Llamar a la función "inicio"
+      inicio();
+    }
   }
 };
 var shoppingCart = [];
