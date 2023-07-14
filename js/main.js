@@ -607,25 +607,28 @@ function searchPage() {
 var currentPage = window.location.pathname;
 
 // Verificar si la página actual no contiene "compra.html"
-if (currentPage.includes("index.html")) {
+if (currentPage.includes("index.html")){
   var compraButton = document.getElementById("compraButton");
-  // Asignar la función de búsqueda al evento click del botón
-  botonBuscar.addEventListener("click", function () {
-    if (busquedaInput.value.trim() !== "") {
-      searchPage();
+  // Verificar si estamos en index.html y redirigir en consecuencia
+  compraButton.addEventListener("click", function () {
+    // Verificar si la URL de la página no contiene "compra.html"
+    if (window.location.href.indexOf("compra.html") === -1) {
+      // Modificar el endpoint a "compra.html"
+      window.location.href = "pages/compra.html";
     }
   });
-  compraButton.addEventListener("click", function () {
-    window.location.href = "/pages/compra.html";
-  });
+  
 }
 else {
   if (currentPage.includes("contacto.html")){
-  var compraButton = document.getElementById("compraButton");
-  // Verificar si estamos en index.html y redirigir en consecuencia
+    var compraButton = document.getElementById("compraButton");
+    // Verificar si estamos en index.html y redirigir en consecuencia
     compraButton.addEventListener("click", function () {
-      // Redirigir a cualquier otra página que no sea index.html
-      window.location.href = "compra.html";
+      // Verificar si la URL de la página no contiene "compra.html"
+      if (window.location.href.indexOf("compra.html") === -1) {
+        // Modificar el endpoint a "compra.html"
+        window.location.href = "compra.html";
+      }
     });
   }
 }

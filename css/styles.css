@@ -536,7 +536,7 @@ body {
 
 .whatsapp-section {
   position: fixed;
-  width: 45px;
+  width: 35px;
   bottom: 30px;
   right: 5px;
 }
@@ -553,6 +553,9 @@ body {
   .header-logo-img-right{
     display: block;
     width: 100px;
+  }
+  .footer-content-a{
+    margin-left: .5rem;
   }
 
   #productos-section {
@@ -670,7 +673,7 @@ body {
   .whatsapp-section {
     position: fixed;
     width: 5%;
-    bottom: 40px;
+    bottom: 30px;
     right: 10px;
   }
   
