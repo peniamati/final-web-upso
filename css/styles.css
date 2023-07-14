@@ -183,7 +183,6 @@ body {
   width: fit-content;
   display: inline-flex;
   align-self: center;
-  margin-left: 10%;
 }
 
 .footer-content-a{
@@ -206,9 +205,6 @@ body {
   background-color: white;
 }
 
-.footer-content-img-container{
-  margin-right: 10%;
-}
 
 .footer-content-img{
   width: 100px;
@@ -554,9 +550,21 @@ body {
     display: block;
     width: 100px;
   }
-  .footer-content-a{
-    margin-left: .5rem;
+
+  .footer-content{
+    margin-left: 10%;
   }
+  .footer-content-social-media a{
+    margin-right: 15px;
+  }
+  .footer-content-a{
+    margin-left: .4rem;
+  }
+
+  .footer-content-img-container{
+    margin-right: 10%;
+  }
+
 
   #productos-section {
     display: flex;
@@ -678,13 +686,14 @@ body {
   }
   
   .whatsapp-logo {
-    width: 100%;
+    height: inherit;
+    width: 60%;
   }
   
   .whatsapp-expand {
     position: inherit;
     right: 10px;
-    bottom: 10px;
+    bottom: 30px;
     display: none;
     font-size: 0.8em;
   }
